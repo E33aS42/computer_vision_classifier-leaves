@@ -51,8 +51,8 @@ def plot_img_augm(fig, img, name, augm, nb):
     plt.axis('off')
     plt.title(augm)
     plt.imshow(img)
-    if augm != "Original":
-        save_img_augm(img, "", name, augm)
+    # if augm != "Original":
+    save_img_augm(img, "", name, augm)
 
 
 def save_img_augm(img, name_dir, name, augm):
@@ -85,8 +85,7 @@ def image_augm(path, name):
     plot_img_augm(fig, rotate_(image, shape_), name, "Rotate", 4)
     plot_img_augm(fig, shear_(path), name, "Shear", 5)
     plot_img_augm(fig, shift_(image), name, "Shift", 6)
-    plot_img_augm(fig, add_noise(image), name, "Noise", 7)
-    plot_img_augm(fig, distortion_(path, shape_), name, "Distortion", 8)
+    plot_img_augm(fig, distortion_(path, shape_), name, "Distortion", 7)
     plt.show()
 
 
@@ -120,8 +119,8 @@ def image_augm_folder(fig, path, name_dir, name, i):
         plot_img_augm_folder(fig, shear_(path), name_dir, name, "Shear", i, 5)
         plot_img_augm_folder(fig, shift_(image), name_dir,
                              name, "Shift", i, 6)
-        plot_img_augm_folder(fig, add_noise(
-            image), name_dir, name, "Noise", i, 7)
+        plot_img_augm_folder(fig, distortion_(
+            path, shape_), name_dir, name, "Distortion", i, 7)
 
     else:
         # Save improved original image and different images augmentations
@@ -131,41 +130,41 @@ def image_augm_folder(fig, path, name_dir, name, i):
         save_img_augm(rotate_(image, shape_), name_dir, name, "Rotate")
         save_img_augm(shear_(path), name_dir, name, "Shear")
         save_img_augm(shift_(image), name_dir, name, "Shift")
-        save_img_augm(add_noise(image), name_dir, name, "Noise")
+        save_img_augm(distortion_(path, shape_), name_dir, name, "Distortion")
 
 
 if __name__ == "__main__":
-    try:
+    # try:
 
-        sys_argv_length = len(sys.argv)
-        if len(sys.argv) >= 2:
+    sys_argv_length = len(sys.argv)
+    if len(sys.argv) >= 2:
 
-            path = sys.argv[1]
+        path = sys.argv[1]
 
-            # Checks if path is a file
-            if os.path.isfile(path):
-                print("isFile")
-                name = get_img_name(path)
-                image_augm(path, name)
+        # Checks if path is a file
+        if os.path.isfile(path):
+            print("isFile")
+            name = get_img_name(path)
+            image_augm(path, name)
 
-            # Checks if path is a directory
-            elif os.path.isdir(path):
-                print("isDir")
-                name_dir = get_dir_name(path)
-                i = 1
-                fig = plt.figure()
-                for imgpath in glob.iglob(f'{path}/*'):
-                    if os.path.isfile(imgpath):
-                        name = get_img_name(imgpath)
-                        image_augm_folder(fig, imgpath, name_dir, name, i)
-                        i += 1
-                    else:
-                        print("isnotFile")
-                plt.show()
+        # Checks if path is a directory
+        elif os.path.isdir(path):
+            print("isDir")
+            name_dir = get_dir_name(path)
+            i = 1
+            fig = plt.figure()
+            for imgpath in glob.iglob(f'{path}/*'):
+                if os.path.isfile(imgpath):
+                    name = get_img_name(imgpath)
+                    image_augm_folder(fig, imgpath, name_dir, name, i)
+                    i += 1
+                else:
+                    print("isnotFile")
+            plt.show()
 
-        else:
-            print("Missing argument. Try again.")
-            exit()
+    else:
+        print("Missing argument. Try again.")
+        exit()
 
-    except Exception as e:
-        print(e)
+    # except Exception as e:
+    #     print(e)
