@@ -45,13 +45,11 @@ def create_balanced_dir(cnt_dir, max_d, dest, augm_dir):
 if __name__ == "__main__":
 	try:
 
-		new_dir = "../balanced_directory/"
-		if not os.path.isdir(new_dir):
-			os.makedirs(new_dir)
+		assert len(sys.argv) >= 2, "Missing argument. Try again."
+		src_dir = sys.argv[1]
+		dest_dir = "../augmented_directory/"
 			
-		origin_dir = "../augmented_directory/"
-			
-		subdirs = [x[0] for x in os.walk(new_dir)]
+		subdirs = [x[0] for x in os.walk(dest_dir)]
 
 		cnt_dir_ = {}
 		for dir_ in subdirs[1:]:
@@ -61,7 +59,7 @@ if __name__ == "__main__":
 
 		print(cnt_dir_)
 
-		create_balanced_dir(cnt_dir_, 1635, new_dir, origin_dir)
+		# create_balanced_dir(cnt_dir_, 1715, dest_dir, src_dir)
 
 	except Exception as e:
 		print(e)

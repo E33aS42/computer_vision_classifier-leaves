@@ -159,18 +159,21 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Big and useless files
+# Big files
 .csv
 .pkl
 .pdf
 .zip
 images
 *_directory*
-test_*
+augmented*
+test*
 train_*
 dst_*
 *.pth
 *.pt
+
+# useless files
 np
 os
 pd
