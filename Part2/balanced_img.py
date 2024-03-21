@@ -20,33 +20,31 @@ def create_balanced_dir(cnt_dir, max_d, dest, augm_dir):
 	"""
 	for k in cnt_dir.keys():
 		cnt = cnt_dir[k]
-		print(k, cnt)
+		print(f"path: {k}, count: {cnt}")
 		set_img = set()
 		dir_name = get_dir_name(k)
-		print(dir_name)
+		print(f"directory name: {dir_name}")
 
 		src = augm_dir + dir_name
-		print(src)
-		i = 0
+		print(f"src: {src}")
 		if not os.path.isdir(k):
 			os.makedirs(k)
 		while cnt < max_d:
 			tmp = rd.choice(os.listdir(src))
-			if os.path.isfile(tmp) and tmp not in set_img:
+			if os.path.isfile(src + '/' + tmp) and tmp not in set_img:
 				set_img.add(tmp)
 				shutil.copy2(src + '/' + tmp, k)
 				cnt += 1
-				i += 1
-			# if i == 1:
-			# 	break
 
-		print(cnt)
+		print(f"Final count: {cnt}")
 
 if __name__ == "__main__":
 	try:
 
 		assert len(sys.argv) >= 2, "Missing argument. Try again."
 		src_dir = sys.argv[1]
+		if src_dir[-1] != "/":
+			src_dir += "/"
 		dest_dir = "../augmented_directory/"
 			
 		subdirs = [x[0] for x in os.walk(dest_dir)]
@@ -59,7 +57,7 @@ if __name__ == "__main__":
 
 		print(cnt_dir_)
 
-		# create_balanced_dir(cnt_dir_, 1715, dest_dir, src_dir)
+		create_balanced_dir(cnt_dir_, 1715, dest_dir, src_dir)
 
 	except Exception as e:
 		print(e)

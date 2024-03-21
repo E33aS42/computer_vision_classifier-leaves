@@ -135,65 +135,66 @@ def save_image_all_transf(dest, imgpath, name):
 
 
 if __name__ == "__main__":
-    # try:
-    assert len(sys.argv) > 1, "missing arguments"
+    try:
+        assert len(sys.argv) > 1, "missing arguments"
 
-    if sys.argv[1] == "-h":
-        print(helper.__doc__)
-        exit()
+        if sys.argv[1] == "-h":
+            print(helper.__doc__)
+            exit()
 
-    if len(sys.argv) == 2:
-        path = sys.argv[1]
-        print(path)
-        # path = "images/Apple/Apple_healthy/image\ \(1\).JPG"
-        # Checks if path is a file
-        assert os.path.isfile(path), "wrong path"
-        print("isFile")
-        name = get_img_name(path)
-        image_augm(path, name)
+        if len(sys.argv) == 2:
+            print(1)
+            path = sys.argv[1]
+            print(path)
+            # path = "images/Apple/Apple_healthy/image\ \(1\).JPG"
+            # Checks if path is a file
+            assert os.path.isfile(path), "wrong path"
+            print("isFile")
+            name = get_img_name(path)
+            image_augm(path, name)
 
-#  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory
-    elif len(sys.argv) == 5:
-        assert sys.argv[1] == "-src" and os.path.isdir(
-            sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
+    #  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory
+        elif len(sys.argv) == 5:
+            assert sys.argv[1] == "-src" and os.path.isdir(
+                sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
 
-        path = sys.argv[2]
-        print(path)
-        name_dir = get_dir_name(path)
-        print(name_dir)
-        for imgpath in glob.iglob(f'{path}/*'):
-            if os.path.isfile(imgpath):
-                name = get_img_name(imgpath)
-                save_image_all_transf(sys.argv[4], imgpath, name)
+            path = sys.argv[2]
+            print(path)
+            name_dir = get_dir_name(path)
+            print(name_dir)
+            for imgpath in glob.iglob(f'{path}/*'):
+                if os.path.isfile(imgpath):
+                    name = get_img_name(imgpath)
+                    save_image_all_transf(sys.argv[4], imgpath, name)
 
-            else:
-                print("isnotFile:", imgpath)
+                else:
+                    print("isnotFile:", imgpath)
 
-#  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory -mask
-    elif len(sys.argv) == 6:
+    #  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory -mask
+        elif len(sys.argv) == 6:
 
-        assert sys.argv[1] == "-src" and os.path.isdir(
-            sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
-        assert (sys.argv[5] == "-mask" or
-                sys.argv[5] == "-Gblur" or
-                sys.argv[5] == "-histo" or
-                sys.argv[5] == "-landmarks" or
-                sys.argv[5] == "-analyze" or
-                sys.argv[5] == "-keypoints" or
-                sys.argv[5] == "-histo"), helper.__doc__
+            assert sys.argv[1] == "-src" and os.path.isdir(
+                sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
+            assert (sys.argv[5] == "-mask" or
+                    sys.argv[5] == "-Gblur" or
+                    sys.argv[5] == "-histo" or
+                    sys.argv[5] == "-landmarks" or
+                    sys.argv[5] == "-analyze" or
+                    sys.argv[5] == "-keypoints" or
+                    sys.argv[5] == "-histo"), helper.__doc__
 
-        path = sys.argv[2]
-        print(path)
-        name_dir = get_dir_name(path)
-        print(name_dir)
-        for imgpath in glob.iglob(f'{path}/*'):
-            if os.path.isfile(imgpath):
-                name = get_img_name(imgpath)
-                save_image_transf_folder(
-                    sys.argv[4], imgpath, name, sys.argv[5])
+            path = sys.argv[2]
+            print(path)
+            name_dir = get_dir_name(path)
+            print(name_dir)
+            for imgpath in glob.iglob(f'{path}/*'):
+                if os.path.isfile(imgpath):
+                    name = get_img_name(imgpath)
+                    save_image_transf_folder(
+                        sys.argv[4], imgpath, name, sys.argv[5])
 
-            else:
-                print("isnotFile:", imgpath)
+                else:
+                    print("isnotFile:", imgpath)
 
-    # except Exception as e:
-    #     print(e)
+    except Exception as e:
+        print(e)

@@ -4,7 +4,7 @@ Usage:
 	helperfile_example.py [-h] [-src SOURCE] [-dst DESTINATION] [-mask/-Gblur/-analyze/-landmarks/-keypoints/-histo]
 
 Options:
-	-h, --help					Show this help message and exit.
+	-h						Show this help message and exit.
 	-src SOURCE, --source SOURCE			Source directory or image file.
 	-dst DESTINATION, --destination DESTINATION	Destination directory.
 	-mask						Apply mask (optional).

@@ -164,7 +164,7 @@ cython_debug/
 .pkl
 .pdf
 .zip
-images
+images*
 *_directory*
 augmented*
 test*

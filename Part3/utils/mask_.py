@@ -16,7 +16,7 @@ def mask_(image, col_space='GRAY'):
 
 
 	# Define the binary threshold value (adjust as needed)
-	binary_threshold = 30
+	binary_threshold = 50
 
 	# Convert the image to LAB color space (you can choose a different color space)
 	if col_space == 'LAB':

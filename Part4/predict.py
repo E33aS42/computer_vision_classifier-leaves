@@ -256,9 +256,10 @@ if __name__ == "__main__":
     
     # Load the model from the .pt file using torch.load
     # model = torch.load(sys.argv[2])
-    # model = torch.jit.load("model_scripted_8_mask_10.pt")
-    model = torch.jit.load("model_scripted_8_origin.pt")
+    # model = torch.jit.load("model_scripted_8_mask_60.pt")
+    # model = torch.jit.load("model_scripted_8_origin.pt")
     # model = torch.jit.load("model_scripted_8_landmarks.pt")
+    model = torch.jit.load("model_scripted1.pt")
 
     path = sys.argv[1]
 
