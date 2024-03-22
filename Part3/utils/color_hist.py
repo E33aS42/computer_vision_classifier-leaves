@@ -34,6 +34,7 @@ warnings.filterwarnings('ignore')
 def color_hist(image):
     # split the image into its respective channels, then initialize the
     # tuple of channel names along with our figure for plotting
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     chans = cv2.split(image)
     colors = ("b", "g", "r")  # cv2 uses BGR
     labels = ("blue", "green", "red", "hue", "saturation",

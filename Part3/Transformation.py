@@ -6,6 +6,7 @@ from utils.pseudolandmarks import Pseudolandmarks, Pseudolandmarks_fig
 from utils.analyze_object import analyze_object
 from utils.mask_ import mask_
 from utils.gblur_ import Gblur_
+from utils.rembg_ import rembg_
 from utils.helperfile import helper
 import cv2
 import matplotlib.pyplot as plt
@@ -40,7 +41,9 @@ def get_dir_name(path):
 
 def image_augm(path, name):
     img = cv2.imread(path)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = rembg_(img)
 
     # Plot different images augmentations
     fig = plt.figure()

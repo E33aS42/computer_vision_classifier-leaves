@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import cv2
 from plantcv import plantcv as pcv
 from utils.mask_ import mask_
-# from utils.x_axis_pseudolandmark import x_axis_pseudolandmark
-from utils.y_axis_pseudolandmarks import y_axis_pseudolandmark
+# from utils.x_axis_pseudolandmark import x_axis_pseudolandmarks
+from utils.y_axis_pseudolandmark import y_axis_pseudolandmarks
 
 """
 
@@ -38,7 +38,7 @@ def Pseudolandmarks(image, ax):
 
     # Identify a set of land mark points
     # Results in set of point values that may indicate tip points
-    left, right, center_h = y_axis_pseudolandmark(img=img, mask=mask)
+    left, right, center_h = y_axis_pseudolandmarks(img=img, mask=mask)
 
     # Access data stored out from y_axis_pseudolandmarks
     left_landmarks = np.asarray(

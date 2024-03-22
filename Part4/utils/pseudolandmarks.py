@@ -4,7 +4,7 @@ import cv2
 from plantcv import plantcv as pcv
 from utils.mask_ import mask_
 # from utils.x_axis_pseudolandmark import x_axis_pseudolandmarks
-from utils.y_axis_pseudolandmarks import y_axis_pseudolandmarks
+from utils.y_axis_pseudolandmark import y_axis_pseudolandmarks
 
 """
 
@@ -15,7 +15,7 @@ but rather act as reference points for computer vision algorithms to analyze and
 
 - Richer Data Representation: Compared to a few manually marked landmarks, pseudolandmarks provide a denser set of points. This helps the algorithm capture more details about the object or scene in the image.
 - Spatial Relationships: The positions of pseudolandmarks relative to each other encode information about the spatial layout of the image content.
-- Feature Learning: In tasks like object recognition, the algorithm learns the relationships between these points and specific objects. This allows it to recognize similar objects in new images.
+- Feature Learning: In tasksmo   like object recognition, the algorithm learns the relationships between these points and specific objects. This allows it to recognize similar objects in new images.
 
 .Applications of Pseudolandmarks:
 
