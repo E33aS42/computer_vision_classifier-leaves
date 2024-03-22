@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 from plantcv import plantcv as pcv
-from utils.rembg_ import rembg_
 from utils.mask_ import mask_
-from utils.x_axis_pseudolandmark import x_axis_pseudolandmarks
+# from utils.x_axis_pseudolandmark import x_axis_pseudolandmarks
 from utils.y_axis_pseudolandmarks import y_axis_pseudolandmarks
 
 """
 
-Pseudolandmarks on an image don't directly represent real-world features themselves, but rather act as reference points for computer vision algorithms to analyze and understand the image content.
+Pseudolandmarks on an image don't directly represent real-world features themselves,
+but rather act as reference points for computer vision algorithms to analyze and understand the image content.
 
 .What Pseudolandmarks Represent for Algorithms:
 
@@ -28,60 +28,73 @@ Pseudolandmarks on an image don't directly represent real-world features themsel
 
 
 def Pseudolandmarks(image, ax):
-	img = np.copy(image)
-	# apply a mask if wanted, otherwise comment this line
-	img = mask_(img, "LAB")
-	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	ret, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY)
+    img = np.copy(image)
+    # apply a mask if wanted, otherwise comment this line
+    img = mask_(img, "LAB")
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY)
 
-	# set a sample label name
-	pcv.params.sample_label = "plant"
+    # set a sample label name
+    pcv.params.sample_label = "plant"
 
-	# Identify a set of land mark points
-	# Results in set of point values that may indicate tip points
-	left, right, center_h  = y_axis_pseudolandmarks(img=img, mask=mask)
+    # Identify a set of land mark points
+    # Results in set of point values that may indicate tip points
+    left, right, center_h = y_axis_pseudolandmarks(img=img, mask=mask)
 
-	# Access data stored out from y_axis_pseudolandmarks
-	left_landmarks = np.asarray(pcv.outputs.observations['plant']['left_lmk']['value'])
-	right_landmarks = np.asarray(pcv.outputs.observations['plant']['right_lmk']['value'])
-	center_landmarks = np.asarray(pcv.outputs.observations['plant']['center_h_lmk']['value'])
+    # Access data stored out from y_axis_pseudolandmarks
+    left_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['left_lmk']['value'])
+    right_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['right_lmk']['value'])
+    center_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['center_h_lmk']['value'])
 
-	ax.imshow(image)
-	ax.scatter(left_landmarks[:, 0], left_landmarks[:, 1], marker="o", color="m", s=20)
-	ax.scatter(right_landmarks[:, 0], right_landmarks[:, 1], marker="o", color="b", s=20)
-	ax.scatter(center_landmarks[:, 0], center_landmarks[:, 1], marker="o", color="#FF6E00", s=20)
+    ax.imshow(image)
+    ax.scatter(left_landmarks[:, 0], left_landmarks[:,
+               1], marker="o", color="m", s=20)
+    ax.scatter(right_landmarks[:, 0],
+               right_landmarks[:, 1], marker="o", color="b", s=20)
+    ax.scatter(center_landmarks[:, 0], center_landmarks[:,
+               1], marker="o", color="#FF6E00", s=20)
 
-	return ax
+    return ax
+
 
 def Pseudolandmarks_fig(image):
-	img = np.copy(image)
-	# apply a mask if wanted, otherwise comment this line
-	img = mask_(img, "LAB")
-	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	ret, mask = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY)
+    img = np.copy(image)
+    # apply a mask if wanted, otherwise comment this line
+    img = mask_(img, "LAB")
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret, mask = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY)
 
-	# set a sample label name
-	pcv.params.sample_label = "plant"
-	# Identify a set of land mark points
-	# Results in set of point values that may indicate tip points
-	left, right, center_h  = y_axis_pseudolandmarks(img=img, mask=mask)
+    # set a sample label name
+    pcv.params.sample_label = "plant"
+    # Identify a set of land mark points
+    # Results in set of point values that may indicate tip points
+    left, right, center_h = y_axis_pseudolandmarks(img=img, mask=mask)
 
-	# Access data stored out from y_axis_pseudolandmarks
-	left_landmarks = np.asarray(pcv.outputs.observations['plant']['left_lmk']['value'])
-	right_landmarks = np.asarray(pcv.outputs.observations['plant']['right_lmk']['value'])
-	center_landmarks = np.asarray(pcv.outputs.observations['plant']['center_h_lmk']['value'])
+    # Access data stored out from y_axis_pseudolandmarks
+    left_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['left_lmk']['value'])
+    right_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['right_lmk']['value'])
+    center_landmarks = np.asarray(
+        pcv.outputs.observations['plant']['center_h_lmk']['value'])
 
-	fig, ax = plt.subplots()
-	ax.imshow(image)
-	ax.scatter(left_landmarks[:, 0], left_landmarks[:, 1], marker="o", color="m", s=20)
-	ax.scatter(right_landmarks[:, 0], right_landmarks[:, 1], marker="o", color="b", s=20)
-	ax.scatter(center_landmarks[:, 0], center_landmarks[:, 1], marker="o", color="#FF6E00", s=20)
+    fig, ax = plt.subplots()
+    ax.imshow(image)
+    ax.scatter(left_landmarks[:, 0], left_landmarks[:,
+               1], marker="o", color="m", s=20)
+    ax.scatter(right_landmarks[:, 0],
+               right_landmarks[:, 1], marker="o", color="b", s=20)
+    ax.scatter(center_landmarks[:, 0], center_landmarks[:,
+               1], marker="o", color="#FF6E00", s=20)
 
-	# Convert the Figure object to a NumPy array so we could later save it into a file
-	fig.canvas.draw()
-	image_array = np.array(fig.canvas.renderer.buffer_rgba())
+    # Convert the Figure object to a NumPy array so we could later save it into a file
+    fig.canvas.draw()
+    image_array = np.array(fig.canvas.renderer.buffer_rgba())
 
-	# Convert the image array from RGBA to BGR (OpenCV uses BGR color order)
-	image_bgr = cv2.cvtColor(image_array[:, :, :3], cv2.COLOR_RGBA2BGR)
-	image_bgr = cv2.cvtColor(image_bgr, cv2.COLOR_RGB2BGR)
-	return image_bgr
+    # Convert the image array from RGBA to BGR (OpenCV uses BGR color order)
+    image_bgr = cv2.cvtColor(image_array[:, :, :3], cv2.COLOR_RGBA2BGR)
+    image_bgr = cv2.cvtColor(image_bgr, cv2.COLOR_RGB2BGR)
+    return image_bgr

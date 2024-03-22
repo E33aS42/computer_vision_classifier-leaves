@@ -157,15 +157,18 @@ def y_axis_pseudolandmarks(img, mask, label=None):
         for i in left:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (255, 0, 0), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (255, 0, 0), -1)
         for i in right:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (255, 0, 255), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (255, 0, 255), -1)
         for i in center_h:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (0, 79, 255), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (0, 79, 255), -1)
 
         _debug(visual=img2,
                filename=os.path.join(params.debug_outdir, (str(params.device) + '_y_axis_pseudolandmarks.png')))
@@ -194,15 +197,18 @@ def y_axis_pseudolandmarks(img, mask, label=None):
         for i in left:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (255, 0, 0), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (255, 0, 0), -1)
         for i in right:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (255, 0, 255), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (255, 0, 255), -1)
         for i in center_h:
             x = i[0, 0]
             y = i[0, 1]
-            cv2.circle(img2, (int(x), int(y)), params.line_thickness, (0, 79, 255), -1)
+            cv2.circle(img2, (int(x), int(y)),
+                       params.line_thickness, (0, 79, 255), -1)
 
         _debug(visual=img2,
                filename=os.path.join(params.debug_outdir, (str(params.device) + '_y_axis_pseudolandmarks.png')))

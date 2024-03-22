@@ -1,30 +1,28 @@
+#!/usr/bin/env python
+
+from utils.color_hist import color_hist, color_hist_save
+from utils.keypoints import keypoints
+from utils.pseudolandmarks import Pseudolandmarks, Pseudolandmarks_fig
+from utils.analyze_object import analyze_object
+from utils.mask_ import mask_
+from utils.gblur_ import Gblur_
+from utils.helperfile import helper
+import cv2
+import matplotlib.pyplot as plt
+import sys
+import os
+import glob
+import warnings
+warnings.filterwarnings('ignore')
+
+
 """
-PlantCV is an open-source image analysis software package targeted for plant phenotyping.
+PlantCV is an open-source image analysis software package targeted
+for plant phenotyping.
 Phenotyping means the quantitative analysis of plant structures and functions.
 A phenotype is the set of observable characteristics or traits of an organism.
 
-https://medium.com/@mohitjavali/10-ways-to-extract-features-from-an-image-f44c8e9b0fbf
-https://domino.ai/blog/feature-extraction-and-image-classification-using-deep-neural-networks
-https://datahacker.rs/004-opencv-projects-how-to-extract-features-from-the-image-in-python/
-https://medium.com/machine-learning-world/feature-extraction-and-similar-image-search-with-opencv-for-newbies-3c59796bf774
-
 """
-
-
-# import warnings
-# warnings.filterwarnings('ignore')
-import glob
-import os
-import sys
-import matplotlib.pyplot as plt
-import cv2
-from utils.helperfile import helper
-from utils.gblur_ import Gblur_
-from utils.mask_ import mask_
-from utils.analyze_object import analyze_object
-from utils.pseudolandmarks import Pseudolandmarks, Pseudolandmarks_fig
-from utils.keypoints import keypoints
-from utils.color_hist import color_hist, color_hist_save
 
 
 def get_img_name(path):
@@ -146,14 +144,13 @@ if __name__ == "__main__":
             print(1)
             path = sys.argv[1]
             print(path)
-            # path = "images/Apple/Apple_healthy/image\ \(1\).JPG"
             # Checks if path is a file
             assert os.path.isfile(path), "wrong path"
             print("isFile")
             name = get_img_name(path)
             image_augm(path, name)
 
-    #  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory
+#  python Transformation.py -src Apple/apple_healthy/ -dst dst_directory
         elif len(sys.argv) == 5:
             assert sys.argv[1] == "-src" and os.path.isdir(
                 sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
@@ -170,7 +167,7 @@ if __name__ == "__main__":
                 else:
                     print("isnotFile:", imgpath)
 
-    #  python Transformation.[extension] -src Apple/apple_healthy/ -dst dst_directory -mask
+#  python Transformation.py -src Apple/apple_healthy/ -dst dst_directory -mask
         elif len(sys.argv) == 6:
 
             assert sys.argv[1] == "-src" and os.path.isdir(
