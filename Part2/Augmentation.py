@@ -138,10 +138,13 @@ def image_augm_folder(fig, path, name_dir, name, i, dest_dir):
 if __name__ == "__main__":
     try:
 
-        assert len(sys.argv) >= 3, "Missing argument. Try again."
+        assert len(sys.argv) >= 2, "Missing argument. Try again."
 
         path = sys.argv[1]
-        dest_dir = sys.argv[2]
+        if len(sys.argv) >= 3:
+            dest_dir = sys.argv[2]
+        else:
+            dest_dir = "../augmented_image"
 
         # Checks if path is a file
         if os.path.isfile(path):
