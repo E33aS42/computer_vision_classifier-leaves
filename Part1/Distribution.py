@@ -37,6 +37,17 @@ def pie_chart(dir_cnt):
             colors=['r', 'b', 'g', 'orange'])
 
 
+def pie_chart8(dir_cnt):
+    """
+    Draw a pie chart from a dictionnary with 4 string keys
+    and numerical values)
+    """
+    plt.pie([int(v) for v in dir_cnt.values()],
+            labels=[k for k in dir_cnt.keys()],
+            autopct='%0.1f%%',
+            colors=['r', 'b', 'g', 'orange', 'pink', 'grey', 'cyan', 'k'])
+
+
 def bar_chart(dir_cnt):
     """
     Draw a bar chart from a dictionary with 4 string keys and numerical values)
@@ -47,9 +58,19 @@ def bar_chart(dir_cnt):
             color=['r', 'b', 'g', 'orange'])
 
 
+def bar_chart8(dir_cnt):
+    """
+    Draw a bar chart from a dictionary with 8 string keys and numerical values)
+    """
+    plt.bar(range(len(dir_cnt)),
+            dir_cnt.values(),
+            tick_label=list(dir_cnt.keys()),
+            color=['r', 'b', 'g', 'orange', 'pink', 'grey', 'cyan', 'k'])
+
+
 if __name__ == "__main__":
     try:
-        sys_argv_length = len(sys.argv)
+
         if len(sys.argv) >= 2:
 
             path = sys.argv[1]
@@ -58,11 +79,17 @@ if __name__ == "__main__":
 
             subdirs = glob.glob(path+"*")
             subdirs_cnt = get_dir_count(subdirs)
-            print(subdirs_cnt)
-
-            pie_chart(subdirs_cnt)
-            plt.figure()
-            bar_chart(subdirs_cnt)
+            assert len(list(subdirs_cnt.keys())) == 4 or \
+                len(list(subdirs_cnt.keys())) == 8, \
+                "incorrect number of labels. It should be either 4 or 8"
+            if len(list(subdirs_cnt.keys())) == 4:
+                pie_chart(subdirs_cnt)
+                plt.figure()
+                bar_chart(subdirs_cnt)
+            elif len(list(subdirs_cnt.keys())) == 8:
+                pie_chart8(subdirs_cnt)
+                plt.figure()
+                bar_chart8(subdirs_cnt)
 
             plt.show()
 
