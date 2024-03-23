@@ -13,11 +13,10 @@ from PIL import Image
 import cv2
 from utils.rembg_ import rembg_
 from utils.mask_ import mask_
-# from utils.pseudolandmarks import Pseudolandmarks_fig
+
 
 use_gpu = torch.cuda.is_available()
 if use_gpu:
-    # print("Using CUDA")
     torch.cuda.empty_cache()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

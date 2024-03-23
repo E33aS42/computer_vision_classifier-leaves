@@ -9,11 +9,14 @@ from plantcv.plantcv import params, outputs
 
 def y_axis_pseudolandmarks(img, mask, label=None):
     """
-    Divide up object contour into 19 equidistant segments and generate landmarks for each
+    Divide up object contour into 19 equidistant segments and
+    generate landmarks for each
 
     Inputs:
-    img      = This is a copy of the original plant image generated using np.copy if debug is true it will be drawn on
-    mask     = this is a binary image. The object should be white and the background should be black
+    img      = This is a copy of the original plant image generated
+    using np.copy if debug is true it will be drawn on
+    mask     = this is a binary image. The object should be white and
+    the background should be black
     label    = Optional label parameter, modifies the variable name of
                observations recorded (default = pcv.params.sample_label).
 
@@ -54,7 +57,8 @@ def y_axis_pseudolandmarks(img, mask, label=None):
     right_list = []
     center_h_list = []
 
-    # If height is greater than 21 pixels make 20 increments (5% intervals)
+    # If height is greater than 21 pixels make 20 increments
+    # (5% intervals)
     if extent >= 21:
         inc = int(extent / 21)
         # Define variable for max points and min points
@@ -85,25 +89,31 @@ def y_axis_pseudolandmarks(img, mask, label=None):
         # For each of the 20 intervals
         for pt in point_range:
             # Get the lower and upper bounds
-            # (lower and higher in terms of value; low point is actually towards top of photo, higher is lower of photo)
+            # (lower and higher in terms of value;
+            # low point is actually towards top of photo,
+            # higher is lower of photo)
             low_point, high_point = pt
             # Get all rows within these two points
             rows = []
             lps = []
             rps = []
-            # Get a continuous list of the values between the top and the bottom of the interval save as vals
+            # Get a continuous list of the values between
+            # the top and the bottom of the interval save as vals
             vals = list(range(low_point, high_point))
-            # For each row... get all coordinates from object contour that match row
+            # For each row... get all coordinates from object contour
+            # that match row
             for v in vals:
                 # Value is all entries that match the row
                 value = obj[v == obj[:, 0, 1]]
                 if len(value) > 0:
-                    # Could potentially be more than two points in all contour in each pixel row
+                    # Could potentially be more than two points
+                    # in all contour in each pixel row
                     # Grab largest x coordinate (column)
                     largest = value[:, 0, 0].max()
                     # Grab smallest x coordinate (column)
                     smallest = value[:, 0, 0].min()
-                    # Take the difference between the two (this is how far across the object is on this plane)
+                    # Take the difference between the two (this
+                    # is how far across the object is on this plane)
                     row_width = largest - smallest
                     # Append this value to a list
                     rows.append(row_width)
@@ -122,7 +132,8 @@ def y_axis_pseudolandmarks(img, mask, label=None):
             right_points.append(np.mean(largest))
             yval = int((high_point + low_point) / 2)
             y_vals.append(yval)
-            # Make a copy of the mask; we want to get landmark points from this
+            # Make a copy of the mask; we want to get landmark points
+            # from this
             window = np.copy(mask)
             window[:low_point] = 0
             window[high_point:] = 0
@@ -130,11 +141,13 @@ def y_axis_pseudolandmarks(img, mask, label=None):
             # Centroid (center of mass x, center of mass y)
             if largest - smallest > 3:
                 if s['m00'] > 0.001:
-                    smx, smy = (s['m10'] / s['m00'], s['m01'] / s['m00'])
+                    smx, smy =\
+                        (s['m10'] / s['m00'], s['m01'] / s['m00'])
                     x_centroids.append(int(smx))
                     y_centroids.append(int(smy))
                 if s['m00'] < 0.001:
-                    smx, smy = (s['m10'] / 0.001, s['m01'] / 0.001)
+                    smx, smy =\
+                        (s['m10'] / 0.001, s['m01'] / 0.001)
                     x_centroids.append(int(smx))
                     y_centroids.append(int(smy))
             else:
@@ -171,10 +184,13 @@ def y_axis_pseudolandmarks(img, mask, label=None):
                        params.line_thickness, (0, 79, 255), -1)
 
         _debug(visual=img2,
-               filename=os.path.join(params.debug_outdir, (str(params.device) + '_y_axis_pseudolandmarks.png')))
+               filename=os.path.join(params.debug_outdir,
+                                     (str(params.device) +
+                                      '_y_axis_pseudolandmarks.png')))
 
     elif extent < 21:
-        # If the length of the object is less than 20 pixels just make the object a 20 pixel rectangle
+        # If the length of the object is less than 20 pixels
+        # just make the object a 20 pixel rectangle
         x, y, width, height = cv2.boundingRect(obj)
         y_coords = list(range(y, y + 20))
         l_points = [x] * 20
@@ -211,7 +227,9 @@ def y_axis_pseudolandmarks(img, mask, label=None):
                        params.line_thickness, (0, 79, 255), -1)
 
         _debug(visual=img2,
-               filename=os.path.join(params.debug_outdir, (str(params.device) + '_y_axis_pseudolandmarks.png')))
+               filename=os.path.join(params.debug_outdir,
+                                     (str(params.device) +
+                                      '_y_axis_pseudolandmarks.png')))
 
     # Store into global measurements
     for pt in left:
@@ -221,16 +239,29 @@ def y_axis_pseudolandmarks(img, mask, label=None):
     for pt in center_h:
         center_h_list.append(pt[0].tolist())
 
-    outputs.add_observation(sample=label, variable='left_lmk', trait='left landmark coordinates',
-                            method='plantcv.plantcv.x_axis_pseudolandmarks', scale='none', datatype=tuple,
-                            value=tuple(left_list), label='none')
-    outputs.add_observation(sample=label, variable='right_lmk', trait='right landmark coordinates',
-                            method='plantcv.plantcv.x_axis_pseudolandmarks', scale='none', datatype=tuple,
-                            value=tuple(right_list), label='none')
-    outputs.add_observation(sample=label, variable='center_h_lmk', trait='center horizontal landmark coordinates',
-                            method='plantcv.plantcv.x_axis_pseudolandmarks', scale='none', datatype=tuple,
-                            value=tuple(center_h_list), label='none')
-
-    # print(left, right, center_h)
+    method = 'plantcv.plantcv.x_axis_pseudolandmarks'
+    outputs.add_observation(sample=label,
+                            variable='left_lmk',
+                            trait='left landmark coordinates',
+                            method=method,
+                            scale='none',
+                            datatype=tuple,
+                            value=tuple(left_list),
+                            label='none')
+    outputs.add_observation(sample=label,
+                            variable='right_lmk',
+                            trait='right landmark coordinates',
+                            method=method,
+                            scale='none', datatype=tuple,
+                            value=tuple(right_list),
+                            label='none')
+    outputs.add_observation(sample=label,
+                            variable='center_h_lmk',
+                            trait='center horizontal landmark coordinates',
+                            method=method,
+                            scale='none',
+                            datatype=tuple,
+                            value=tuple(center_h_list),
+                            label='none')
 
     return left, right, center_h

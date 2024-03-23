@@ -8,20 +8,43 @@ from utils.y_axis_pseudolandmark import y_axis_pseudolandmarks
 
 """
 
-Pseudolandmarks on an image don't directly represent real-world features themselves, but rather act as reference points for computer vision algorithms to analyze and understand the image content.
+Pseudolandmarks on an image don't directly represent real-world
+features themselves, but rather act as reference points
+for computer vision algorithms to analyze and understand
+the image content.
 
 .What Pseudolandmarks Represent for Algorithms:
 
-- Richer Data Representation: Compared to a few manually marked landmarks, pseudolandmarks provide a denser set of points. This helps the algorithm capture more details about the object or scene in the image.
-- Spatial Relationships: The positions of pseudolandmarks relative to each other encode information about the spatial layout of the image content.
-- Feature Learning: In tasks like object recognition, the algorithm learns the relationships between these points and specific objects. This allows it to recognize similar objects in new images.
+- Richer Data Representation:
+Compared to a few manually marked landmarks, pseudolandmarks
+provide a denser set of points.
+This helps the algorithm capture more details about the object
+or scene in the image.
+
+- Spatial Relationships:
+The positions of pseudolandmarks relative
+to each other encode information about the spatial layout
+of the image content.
+
+- Feature Learning:
+In tasks like object recognition, the algorithm learns
+the relationships between these points and specific objects.
+This allows it to recognize similar objects in new images.
 
 .Applications of Pseudolandmarks:
 
-- Object Recognition: Facial recognition systems might use densely sampled pseudolandmarks across the face to learn the spatial relationships between facial features for identification.
-- Object Tracking: In a video sequence, following the changes in positions of pseudolandmarks over time can help track the movement of objects.
-- Image Segmentation: Algorithms might use pseudolandmarks to define boundaries between different objects or regions within an image.
-- Image Registration: Aligning different images of the same scene can be achieved by establishing correspondences between similar pseudolandmarks across the images.
+- Object Recognition:
+Facial recognition systems might use densely sampled pseudolandmarks
+across the face to learn the spatial relationships between facial
+features for identification.
+- Object Tracking: In a video sequence, following the changes
+in positions of pseudolandmarks over time can help track the movement
+of objects.
+- Image Segmentation: Algorithms might use pseudolandmarks to define
+boundaries between different objects or regions within an image.
+- Image Registration: Aligning different images of the same scene
+can be achieved by establishing correspondences between similar
+pseudolandmarks across the images.
 
 """
 
@@ -70,7 +93,8 @@ def Pseudolandmarks_fig(image):
     pcv.params.sample_label = "plant"
     # Identify a set of land mark points
     # Results in set of point values that may indicate tip points
-    left, right, center_h = y_axis_pseudolandmark(img=img, mask=mask)
+    left, right, center_h = y_axis_pseudolandmarks(img=img,
+                                                   mask=mask)
 
     # Access data stored out from y_axis_pseudolandmarks
     left_landmarks = np.asarray(
@@ -89,7 +113,8 @@ def Pseudolandmarks_fig(image):
     ax.scatter(center_landmarks[:, 0], center_landmarks[:,
                1], marker="o", color="#FF6E00", s=20)
 
-    # Convert the Figure object to a NumPy array so we could later save it into a file
+    # Convert the Figure object to a NumPy array so we could later
+    # save it into a file
     fig.canvas.draw()
     image_array = np.array(fig.canvas.renderer.buffer_rgba())
 

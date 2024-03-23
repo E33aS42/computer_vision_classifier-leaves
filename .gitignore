@@ -165,7 +165,7 @@ cython_debug/
 .pdf
 .zip
 images*
-*_directory*
+*directory*
 augmented*
 test*
 train_*

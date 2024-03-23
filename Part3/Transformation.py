@@ -8,6 +8,7 @@ from utils.mask_ import mask_
 from utils.gblur_ import Gblur_
 from utils.rembg_ import rembg_
 from utils.helperfile import helper
+from copy import copy
 import cv2
 import matplotlib.pyplot as plt
 import sys
@@ -41,9 +42,7 @@ def get_dir_name(path):
 
 def image_augm(path, name):
     img = cv2.imread(path)
-
-    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = rembg_(img)
+    imgcopy = copy(img)
 
     # Plot different images augmentations
     fig = plt.figure()
@@ -54,7 +53,8 @@ def image_augm(path, name):
     fig.add_subplot(lines, columns, 1)
     plt.imshow(img)
     plt.xlabel('Figure IV.1: Original')
-
+    img = rembg_(img)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     fig.add_subplot(lines, columns, 2)
     plt.imshow(Gblur_(img), cmap='gray')
     plt.xlabel('Figure IV.2: Gaussian blur')
@@ -76,8 +76,7 @@ def image_augm(path, name):
     plt.imshow(keypoints(img, 30))
     plt.xlabel('Figure IV.6: Keypoints detection')
 
-    color_hist(img)
-
+    color_hist(imgcopy)
     plt.show()
 
 
@@ -144,7 +143,6 @@ if __name__ == "__main__":
             exit()
 
         if len(sys.argv) == 2:
-            print(1)
             path = sys.argv[1]
             print(path)
             # Checks if path is a file
@@ -153,7 +151,6 @@ if __name__ == "__main__":
             name = get_img_name(path)
             image_augm(path, name)
 
-#  python Transformation.py -src Apple/apple_healthy/ -dst dst_directory
         elif len(sys.argv) == 5:
             assert sys.argv[1] == "-src" and os.path.isdir(
                 sys.argv[2]) and sys.argv[3] == "-dst", "wrong arguments paths"
@@ -170,7 +167,6 @@ if __name__ == "__main__":
                 else:
                     print("isnotFile:", imgpath)
 
-#  python Transformation.py -src Apple/apple_healthy/ -dst dst_directory -mask
         elif len(sys.argv) == 6:
 
             assert sys.argv[1] == "-src" and os.path.isdir(

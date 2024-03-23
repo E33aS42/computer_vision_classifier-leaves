@@ -55,7 +55,7 @@ def plot_img_augm(fig, img, name, augm, nb, dest_dir):
 def save_img_augm(img, name_dir, name, augm, dest_dir):
     if augm == "Original":
         # name_dir = name_dir + "/" + augm
-        dest_dir = "../augmented_directory"
+        dest_dir = "../augmented_directory1"
     if not os.path.isdir(dest_dir):
         os.makedirs(dest_dir)
     if name_dir == "":
