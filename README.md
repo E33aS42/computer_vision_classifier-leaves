@@ -14,6 +14,7 @@ Looking at the data shows that it is clearly unbalanced.
 
 In order to balance the dataset, new images were created from the existing images using different images transformations.
 
+![augm](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/ca6582ec-8d0b-4e6f-97cd-a52b2a1436e3)
 
 
 ![pie_balanced](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/cf912c2d-c636-472f-be4e-a7c945dc84e9)
