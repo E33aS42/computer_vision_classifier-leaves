@@ -8,4 +8,4 @@ This is a school project that was divided into 4 parts
 The dataset consists of 8 classes of apple and grape tree leaves, 1 healthy class and 3 diseases classes for each fruit tree.
 Looking at the data shows that it is clearly unbalanced.
 
-![pie](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/f68b6882-b524-4bb2-bb11-7411d84afe6e)
+![pie](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/b3bdfbaa-d3bf-4e56-8c79-0b1eeeafebad)
