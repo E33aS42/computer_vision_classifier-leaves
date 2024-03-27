@@ -22,5 +22,9 @@ In order to balance the dataset, new images were created from the existing image
 
 # Part 3 : Images exploration
 
+![transf4](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/a9e9a97c-2525-49db-8bdf-24d189779ad9)
+
+![color_hist5](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/577d9e14-4abb-41ca-aa94-de2390c46fd0)
+
 
 # Part 4 : Model training and prediction
