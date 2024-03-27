@@ -43,6 +43,7 @@ def get_dir_name(path):
 def image_augm(path, name):
     img = cv2.imread(path)
     imgcopy = copy(img)
+    imgcopy2 = copy(img)
 
     # Plot different images augmentations
     fig = plt.figure()
@@ -51,7 +52,7 @@ def image_augm(path, name):
     fig.tight_layout(pad=25.0)
 
     fig.add_subplot(lines, columns, 1)
-    plt.imshow(img)
+    plt.imshow(imgcopy2)
     plt.xlabel('Figure IV.1: Original')
     img = rembg_(img)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
