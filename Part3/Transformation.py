@@ -52,6 +52,7 @@ def image_augm(path, name):
     fig.tight_layout(pad=25.0)
 
     fig.add_subplot(lines, columns, 1)
+    imgcopy2 = cv2.cvtColor(imgcopy2, cv2.COLOR_BGR2RGB)
     plt.imshow(imgcopy2)
     plt.xlabel('Figure IV.1: Original')
     img = rembg_(img)
