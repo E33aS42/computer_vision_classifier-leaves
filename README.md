@@ -9,4 +9,4 @@ The dataset consists of 8 classes of apple and grape tree leaves, 1 healthy clas
 Looking at the data shows that it is clearly unbalanced.
 
 
-
+![pie](https://github.com/E33aS42/computer_vision_classifier-leaves/utils/pie.png)
