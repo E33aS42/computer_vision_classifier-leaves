@@ -66,6 +66,7 @@ def bar_chart8(dir_cnt):
             dir_cnt.values(),
             tick_label=list(dir_cnt.keys()),
             color=['r', 'b', 'g', 'orange', 'pink', 'grey', 'cyan', 'k'])
+    plt.rcParams['font.size'] = 25
 
 
 if __name__ == "__main__":
