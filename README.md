@@ -44,3 +44,5 @@ Different methods of direct extraction of characteristics from an image of a lea
 
 # Part 4 : Model training and prediction
 
+![fig](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/a50e4fe7-5607-4b66-b758-b3770caac701)
+
