@@ -35,9 +35,12 @@ Different methods of direct extraction of characteristics from an image of a lea
 
 - Detecting keypoints or points of interests within an image to represent locations such as corners, edges, or blobs. Potential keypoints are identified based on intensity differences between a central pixel and its surrounding pixels. An orientation is assigned based on the intensity distribution around the keypoint making them rotation invariant. This is useful for image matching and object recognition.
 
+- Drawing the color histogram of an image to show the distribution of colors within that image. It tells us how many pixels fall into each color range and it is a valuable tool for understanding the color characteristics of an image.
+
 ![transf4](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/a9e9a97c-2525-49db-8bdf-24d189779ad9)
 
 ![color_hist5](https://github.com/E33aS42/computer_vision_classifier-leaves/assets/66993020/577d9e14-4abb-41ca-aa94-de2390c46fd0)
 
 
 # Part 4 : Model training and prediction
+
