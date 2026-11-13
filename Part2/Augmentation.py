@@ -11,6 +11,7 @@ import cv2
 import matplotlib.pyplot as plt
 import sys
 import os
+os.environ["QT_QPA_PLATFORM"] = "xcb" # Force Qt to use the X11 backend instead of Wayland.
 import glob
 import warnings
 warnings.filterwarnings('ignore')
