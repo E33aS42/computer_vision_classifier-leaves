@@ -42,10 +42,12 @@ def pie_chart8(dir_cnt):
     Draw a pie chart from a dictionnary with 4 string keys
     and numerical values)
     """
-    plt.pie([int(v) for v in dir_cnt.values()],
-            labels=[k for k in dir_cnt.keys()],
-            autopct='%0.1f%%',
-            colors=['r', 'b', 'g', 'orange', 'pink', 'grey', 'cyan', 'k'])
+    plt.pie(
+        [int(v) for v in dir_cnt.values()],
+        labels=[f'{k}\n({int(v)})' for k, v in dir_cnt.items()],
+        colors=['r', 'b', 'g', 'orange', 'pink', 'grey', 'cyan', 'k'],
+        textprops={'fontweight': 'bold'}
+    )
 
 
 def bar_chart(dir_cnt):

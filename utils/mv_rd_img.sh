@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# USAGE:
+# ./mv_rd_img.sh source_dir dest_dir nb_img
+# ./mv_rd_img.sh ../images ../test_images 30
+
 # Define source and destination directories (update these paths)
 source_dir="$1"
 dest_dir="$2"
+nb_img="$3"
 
 # Check if source directory exists
 if [ ! -d "$source_dir" ]; then
@@ -28,13 +33,13 @@ for subdir in "$source_dir"/*; do
     mkdir -p "$new_dir"
 
     echo "Created directory: $new_dir"
-    # Find JPG files, shuffle, and select 15 while preserving filenames with spaces:
+    # Find JPG files, shuffle, and select nb_img while preserving filenames with spaces:
     all_jpgs=$(find "$subdir" -type f -name "*.JPG")
 
     while IFS= read -r jpg; do
       shuffled_jpgs+=("$jpg")  # Add each file to an array to preserve spaces
     done <<< "$(sort -R <<< "$all_jpgs")"
-    shuffled_outputs=("${shuffled_jpgs[@]:0:15}")  # Select first 15 elements
+    shuffled_outputs=("${shuffled_jpgs[@]:0:$nb_img}")  # Select first nb_img elements
 
     # Move the 15 randomly chosen JPGs:
     for jpg in "${shuffled_outputs[@]}"; do

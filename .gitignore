@@ -165,6 +165,7 @@ cython_debug/
 .pdf
 .zip
 images*
+leaves*
 *directory*
 augmented*
 test*
